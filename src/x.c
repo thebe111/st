@@ -16,9 +16,9 @@
 #include <X11/XKBlib.h>
 
 char *argv0;
-#include "arg.h"
-#include "st.h"
-#include "win.h"
+#include "include/arg.h"
+#include "include/st.h"
+#include "include/win.h"
 
 /* types used in config.h */
 typedef struct {
@@ -61,7 +61,7 @@ static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
 
 /* config.h for applying patches and the configuration. */
-#include "config.h"
+#include "include/config.h"
 
 /* XEMBED messages */
 #define XEMBED_FOCUS_IN  4
@@ -686,6 +686,7 @@ setsel(char *str, Time t)
 	XSetSelectionOwner(xw.dpy, XA_PRIMARY, xw.win, t);
 	if (XGetSelectionOwner(xw.dpy, XA_PRIMARY) != xw.win)
 		selclear();
+	clipcopy(NULL);
 }
 
 void
